@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import {
-  Bike,
+  Shirt,
   Facebook,
   Instagram,
   Twitter,
@@ -16,10 +16,10 @@ import {
 export default function Footer() {
   const footerLinks = {
     shop: [
-      { name: 'Bikes', href: '/products?category=bikes' },
-      { name: 'Components', href: '/products?category=components' },
-      { name: 'Apparel', href: '/products?category=apparel' },
+      { name: 'Men', href: '/products?category=men' },
+      { name: 'Women', href: '/products?category=women' },
       { name: 'Accessories', href: '/products?category=accessories' },
+      { name: 'New Arrivals', href: '/products?new=true' },
       { name: 'Sale', href: '/products?sale=true' },
     ],
     support: [
@@ -54,7 +54,7 @@ export default function Footer() {
             <div>
               <h3 className="text-2xl font-bold mb-2">Stay in the Loop</h3>
               <p className="text-gray-400">
-                Subscribe to get updates on new products, exclusive offers, and cycling tips.
+                Subscribe to get updates on new arrivals, exclusive offers, and style tips.
               </p>
             </div>
             <div className="flex gap-2">
@@ -77,28 +77,28 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <Link href="/" className="flex items-center space-x-2 mb-6">
                 <div className="p-2 bg-blue-600 rounded-lg">
-                  <Bike className="h-6 w-6 text-white" />
+                  <Shirt className="h-6 w-6 text-white" />
                 </div>
                 <span className="text-xl font-bold">
-                  Resilient Cycling
+                  Resilient Wear
                 </span>
               </Link>
               <p className="text-gray-400 mb-6 max-w-md">
-                Premium cycling gear engineered for performance and built for resilience. 
-                Join thousands of cyclists who trust our equipment for their adventures.
+                Quality apparel crafted for everyday comfort and durability.
+                Join thousands of customers who trust our brand for their style needs.
               </p>
               <div className="space-y-2">
                 <div className="flex items-center space-x-2 text-gray-400">
                   <MapPin className="h-4 w-4" />
-                  <span>123 Cycling Street, Bike City, BC 12345</span>
+                  <span>123 Fashion Avenue, Style City, SC 12345</span>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-400">
                   <Phone className="h-4 w-4" />
-                  <span>+1 (555) 123-BIKE</span>
+                  <span>+1 (555) 987-STYLE</span>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-400">
                   <Mail className="h-4 w-4" />
-                  <span>hello@resilientcycling.com</span>
+                  <span>hello@resilientwear.com</span>
                 </div>
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="py-6 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2024 Resilient Cycling. All rights reserved.
+            © 2024 Resilient Wear. All rights reserved.
           </div>
           <div className="flex items-center space-x-4">
             {socialLinks.map((social) => (

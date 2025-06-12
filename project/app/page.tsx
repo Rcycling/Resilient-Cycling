@@ -14,17 +14,17 @@ export default function Home() {
     {
       icon: Shield,
       title: 'Built to Last',
-      description: 'Premium materials and construction for maximum durability'
+      description: 'Premium fabrics and stitching for long-lasting wear'
     },
     {
       icon: Zap,
-      title: 'Performance First',
-      description: 'Engineered for speed, efficiency, and competitive advantage'
+      title: 'Comfort Guaranteed',
+      description: 'Designed for all-day wear without sacrificing style'
     },
     {
       icon: Users,
       title: 'Community Driven',
-      description: 'Join thousands of cyclists who trust our gear for their adventures'
+      description: 'Join thousands who trust our brand for their everyday outfits'
     }
   ];
 
@@ -41,12 +41,12 @@ export default function Home() {
                   New Collection Available
                 </Badge>
                 <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
-                  Gear Up for Your Next
-                  <span className="text-emerald-400"> Adventure</span>
+                  Refresh Your Wardrobe
+                  <span className="text-emerald-400"> in Style</span>
                 </h1>
                 <p className="text-xl text-blue-100 max-w-lg">
-                  Premium cycling gear engineered for performance, built for resilience. 
-                  Discover equipment that matches your passion for the ride.
+                  Discover high quality apparel designed for comfort and performance.
+                  Find outfits that match your unique personality.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -55,7 +55,12 @@ export default function Home() {
                     Shop Now <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-900">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-white bg-white/20 text-white hover:bg-white hover:text-blue-900"
+                >
                   <Link href="/about">
                     Learn More
                   </Link>
@@ -79,10 +84,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose Resilient Cycling?
+              Why Choose Resilient Wear?
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We&apos;re committed to providing cyclists with gear that performs as hard as they do.
+              We&apos;re committed to delivering apparel that combines style with lasting quality.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -116,7 +121,7 @@ export default function Home() {
                 Featured Products
               </h2>
               <p className="text-lg text-gray-600">
-                Discover our most popular cycling gear
+                Discover our most popular apparel and accessories
               </p>
             </div>
             <Button asChild variant="outline">

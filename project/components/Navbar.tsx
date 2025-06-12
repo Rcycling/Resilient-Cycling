@@ -10,11 +10,11 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { 
-  Bike, 
-  Menu, 
-  ShoppingCart, 
-  User, 
+import {
+  Shirt,
+  Menu,
+  ShoppingCart,
+  User,
   Search,
   Heart
 } from 'lucide-react';
@@ -26,6 +26,9 @@ export default function Navbar() {
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Products', href: '/products' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'About', href: '/about' },
   ];
 
   return (
@@ -35,10 +38,10 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="p-2 bg-blue-600 rounded-lg">
-              <Bike className="h-6 w-6 text-white" />
+              <Shirt className="h-6 w-6 text-white" />
             </div>
             <span className="text-xl font-bold text-gray-900">
-              Resilient Cycling
+              Resilient Wear
             </span>
           </Link>
 
@@ -63,11 +66,13 @@ export default function Navbar() {
             </Button>
 
             {/* Wishlist */}
-            <Button variant="ghost" size="sm" className="relative">
-              <Heart className="h-5 w-5" />
-              <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500">
-                2
-              </Badge>
+            <Button asChild variant="ghost" size="sm" className="relative">
+              <Link href="/wishlist">
+                <Heart className="h-5 w-5" />
+                <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500">
+                  2
+                </Badge>
+              </Link>
             </Button>
 
             {/* Cart */}

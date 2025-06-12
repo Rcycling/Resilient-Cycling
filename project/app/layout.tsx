@@ -8,8 +8,8 @@ import { CartProvider } from '@/hooks/use-cart';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Resilient Cycling - Premium Cycling Gear & Bikes',
-  description: 'Discover high-performance cycling gear, bikes, and accessories for every adventure. Built for resilience, designed for performance.',
+  title: 'Resilient Wear - Quality Apparel for Everyone',
+  description: 'Discover stylish clothing and accessories designed for comfort and durability.',
 };
 
 export default function RootLayout({
