@@ -12,9 +12,36 @@ import { Input } from '@/components/ui/input';
 import { Search, Filter, Grid, List } from 'lucide-react';
 import { products } from '@/lib/products';
 import { useCart } from '@/hooks/use-cart';
+import { useState } from 'react';
 
 export default function ProductsPage() {
   const { addItem } = useCart();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [category, setCategory] = useState('all');
+  const [price, setPrice] = useState('all');
+  const [sort, setSort] = useState('');
+
+  const filtered = products
+    .filter((p) =>
+      p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter((p) =>
+      category === 'all' ? true : p.category.toLowerCase() === category
+    )
+    .filter((p) => {
+      if (price === 'all') return true;
+      if (price === '0-50') return p.price >= 0 && p.price <= 50;
+      if (price === '50-200') return p.price >= 50 && p.price <= 200;
+      if (price === '200-1000') return p.price >= 200 && p.price <= 1000;
+      if (price === '1000+') return p.price > 1000;
+      return true;
+    })
+    .sort((a, b) => {
+      if (sort === 'price-low') return a.price - b.price;
+      if (sort === 'price-high') return b.price - a.price;
+      if (sort === 'rating') return b.rating - a.rating;
+      return 0;
+    });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -22,7 +49,7 @@ export default function ProductsPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Products</h1>
-          <p className="text-gray-600">Discover our complete collection of premium cycling gear</p>
+          <p className="text-gray-600">Explore our curated selection of clothing and accessories</p>
         </div>
 
         {/* Filters and Search */}
@@ -33,21 +60,24 @@ export default function ProductsPage() {
               <Input
                 placeholder="Search products..."
                 className="pl-10"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <Select>
+            <Select onValueChange={setCategory} value={category}>
               <SelectTrigger>
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Categories</SelectItem>
-                <SelectItem value="bikes">Bikes</SelectItem>
-                <SelectItem value="apparel">Apparel</SelectItem>
+                <SelectItem value="tops">Tops</SelectItem>
+                <SelectItem value="bottoms">Bottoms</SelectItem>
+                <SelectItem value="jackets">Jackets</SelectItem>
+                <SelectItem value="footwear">Footwear</SelectItem>
                 <SelectItem value="accessories">Accessories</SelectItem>
-                <SelectItem value="safety">Safety</SelectItem>
               </SelectContent>
             </Select>
-            <Select>
+            <Select onValueChange={setPrice} value={price}>
               <SelectTrigger>
                 <SelectValue placeholder="Price Range" />
               </SelectTrigger>
@@ -74,9 +104,9 @@ export default function ProductsPage() {
         {/* Results Header */}
         <div className="flex justify-between items-center mb-6">
           <p className="text-gray-600">
-            Showing {products.length} results
+            Showing {filtered.length} results
           </p>
-          <Select>
+          <Select onValueChange={setSort} value={sort}>
             <SelectTrigger className="w-48">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
@@ -92,7 +122,7 @@ export default function ProductsPage() {
 
         {/* Products Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
+          {filtered.map((product) => (
             <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
               <div className="relative">
                 <img

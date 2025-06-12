@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { useToast } from '@/hooks/use-toast';
 import { 
   User, 
   Package, 
@@ -20,6 +21,8 @@ import {
 
 export default function AccountPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<any>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     const stored = localStorage.getItem('loggedIn');
@@ -230,7 +233,11 @@ export default function AccountPage() {
                             </Badge>
                             <p className="font-semibold">${order.total}</p>
                           </div>
-                          <Button variant="outline" size="sm">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setSelectedOrder(order)}
+                          >
                             <Eye className="h-4 w-4 mr-2" />
                             View
                           </Button>
@@ -294,7 +301,16 @@ export default function AccountPage() {
                       <Label htmlFor="phone">Phone Number</Label>
                       <Input id="phone" type="tel" defaultValue="+1 (555) 123-4567" />
                     </div>
-                    <Button>Save Changes</Button>
+                    <Button
+                      onClick={() =>
+                        toast({
+                          title: 'Profile updated',
+                          description: 'Your changes have been saved.',
+                        })
+                      }
+                    >
+                      Save Changes
+                    </Button>
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -311,7 +327,16 @@ export default function AccountPage() {
                         <Input type="password" placeholder="Current password" />
                         <Input type="password" placeholder="New password" />
                         <Input type="password" placeholder="Confirm new password" />
-                        <Button>Update Password</Button>
+                        <Button
+                          onClick={() =>
+                            toast({
+                              title: 'Password updated',
+                              description: 'Your password has been changed.',
+                            })
+                          }
+                        >
+                          Update Password
+                        </Button>
                       </div>
                     </div>
                     <div>
@@ -335,6 +360,23 @@ export default function AccountPage() {
                 </Card>
               </TabsContent>
             </Tabs>
+            {selectedOrder && (
+              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <Card className="w-80">
+                  <CardHeader>
+                    <CardTitle>Order {selectedOrder.id}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <p>Date: {selectedOrder.date}</p>
+                    <p>Status: {selectedOrder.status}</p>
+                    <p>Total: ${selectedOrder.total}</p>
+                    <Button onClick={() => setSelectedOrder(null)} className="mt-2 w-full">
+                      Close
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
           </div>
         </div>
       </div>
